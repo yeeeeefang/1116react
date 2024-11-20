@@ -25,8 +25,8 @@ function TodoWrapper() {
     //1.使用...其餘運算子來保留原陣列內容
     //2.再加入新的物件內容
     //第一個content是屬性名稱 第二個content是屬性值
-    const addTodo = (content) => {
-        setTodos([...todos, { content: content, id: Math.random(), isCompleted: false }])
+    const addTodo = (addContent) => {
+        setTodos([...todos, { content: addContent, id: Math.random(), isCompleted: false }])
     }
 
     //建立刪除todo函式，要傳給Todo元件使用
@@ -87,6 +87,7 @@ return (
         <h1>待辦事項</h1>
         <CreateForm addTodo={addTodo} />
         {
+
             todos.map((todo) => {
                 return <Todo todo={todo} key={todo.id}
                     deleteTodo={deleteTodo}
