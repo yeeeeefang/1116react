@@ -2,6 +2,7 @@ import { useState } from "react"
 import CreateForm from "./CreateForm"
 import Todo from "./Todo"
 
+
 function TodoWrapper() {
 
     //因為有n個Todo 所以使用陣列存取
@@ -14,9 +15,10 @@ function TodoWrapper() {
     // ]);
     //把上面三句註解是因為要判定todo是否被點擊
     //所以要增加一個標記屬性=>isCompleted
+    //新增陣列屬性isEdit =>判別是否編輯中
     const [todos, setTodos] = useState([
-        { content: 'List1', id: Math.random(), isCompleted: false },
-        { content: 'List2', id: Math.random(), isCompleted: false },
+        { content: 'List1', id: Math.random(), isCompleted: false, isEdit: false },
+        { content: 'List2', id: Math.random(), isCompleted: false, isEdit: false },
     ]);
 
     //建立加入新的todo內容
@@ -49,20 +51,54 @@ function TodoWrapper() {
                 : todo
         }))
     }
-    return (
-        <div className="wrapper">
-            <h1>待辦事項</h1>
-            <CreateForm addTodo={addTodo} />
-            {
-                todos.map((todo) => {
-                    return <Todo todo={todo} key={todo.id}
-                        deleteTodo={deleteTodo}
-                        toggleCompleted={toggleCompleted}
-                    />
-                })
-            }
 
-        </div>
-    )
+    //建立是否修改中的函式(雙向)
+    const toggleIsEdit = (id) => {
+        setTodos(todos.map((todo) => {
+            //三元運算子寫法
+            //逐筆檢查目前的todo.id是否等於被修改的id
+            return todo.id === id
+                ? { ...todo, isEdit: !todo.isEdit }
+                : todo
+
+            //if-else寫法
+            // if (todo.id === id) {
+            //     return { ...todo, isEdit: !todo.isEdit }
+            // } else {
+            //     return todos
+            // }
+        
+    }))
+}
+
+//建立完成修改的函式(按下完成按鈕)
+//1.異動content為新的內容
+//2.isEdit改回false
+const editTodo=(id,newContent)=>{
+    setTodos(todos.map((todo)=>{
+        return todo.id === id
+        ?{...todo, content: newContent ,isEdit:false }
+        :todo
+    }))
+}
+
+return (
+    <div className="wrapper">
+        <h1>待辦事項</h1>
+        <CreateForm addTodo={addTodo} />
+        {
+            todos.map((todo) => {
+                return <Todo todo={todo} key={todo.id}
+                    deleteTodo={deleteTodo}
+                    toggleCompleted={toggleCompleted}
+                    toggleIsEdit={toggleIsEdit}
+                    //我傳屬性={內容是他}
+                    editTodo={editTodo}
+                />
+            })
+        }
+
+    </div>
+)
 }
 export default TodoWrapper
