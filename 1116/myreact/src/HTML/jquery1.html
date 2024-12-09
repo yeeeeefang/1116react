@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jQuery主程式 -->
+    <script src="./jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <h2>非前端框架下的jQuery</h2>
+    <hr>
+    <div>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>click1</p>
+        <p>click2</p>
+        <hr>
+
+    </div>
+
+    <script>
+        //標準法
+        $(document).ready(function () {
+            //程式撰寫區
+            $('p').click(function () {
+                //hide()=>不顯示
+                $(this).hide();
+            })
+        });
+        //簡寫法
+        $(function () {
+            //程式撰寫區
+            $('h2').click(function () {
+                $('h2').hide();
+            });
+        });
+    </script>
+    <p id="p1">Lorem ipsum dolor, sit amet elit. Aperiam, quibusdam.</p>
+    <button id="hide">隱藏</button>
+    <button id="show">顯示</button>
+    <button id="toggle">雙向</button>
+    <script>
+        $(function () {
+            $('#hide').click(function () {
+                $('#p1').hide(300);
+            })
+            $('#show').click(function () {
+                $('#p1').show(300);
+            })
+            $('#toggle').click(function () {
+                $('#p1').toggle(300);
+            })
+        })
+    </script>
+
+    <hr>
+    <button id="btn1">按一下展開</button>
+    <button id="btn2">按一下摺疊</button>
+    <button id="btn3">按一下雙向</button>
+    <div id="panel" style="display: none;background-color: azure;height: 100px;padding: 10px;">
+        我被展開
+    </div>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <script>
+        $(function () {
+            $('#btn1').click(function () {
+                $('#panel').slideDown(500);
+            })
+        });
+        $(function () {
+            $('#btn2').click(function () {
+                $('#panel').slideUp(500);
+            })
+        });
+        $(function () {
+            $('#btn3').click(function () {
+                $('#panel').slideToggle(500);
+            })
+        });
+    </script>
+
+    <!-- 最新消息列(展開/折疊) -->
+    <div style="display: flex;width: 50%;justify-content: space-around; background-color: brown;">
+        <h2 style="font-size: larger;width: 50%;border: none;background-color: brown;">最新消息</h2>
+        <img id="btn4" style="width: 40px; cursor: pointer;" src="https://cdn-icons-png.flaticon.com/128/60/60995.png"
+            alt="">
+    </div>
+    <div class="content" style="display: none;height: 100px;background-color: rgb(241, 250, 250);">
+        <h4>程式設計開課拉</h4>
+        <P>即日起至12月31日，新課限時優惠88折，而且只要註冊賴官方會員，還能送上課折價券1000元。新課限時優惠88折，而且只要註冊賴官方會員，還能送上課折價券1000元。</P>
+    </div>
+    <script>
+        $(function () {
+            $('#btn4').click(function () {
+                $('.content').slideToggle(500);
+            })
+        });
+    </script>
+
+    <br>
+    <!-- animate -->
+    <button id="up">上</button>
+    <button id="down">下</button>
+    <button id="left">左</button>
+    <button id="right">右</button>
+    <button id="zoom">放大</button>
+    <button id="zoom2">縮小</button>
+    <button id="zoom3">雙向</button>
+    <button id="changeColor">變色</button>
+
+    <div id="box2">dsf</div>
+    <style>
+        #box2 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(115, 192, 222);
+            margin: 150px;
+
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $('#right').click(function () {
+                $('#box2').animate({ right: '-10px' })
+            });
+            $('#zoom').click(function () {
+                $('#box2').animate({
+                    width: '150px',
+                    height: '150px',
+                    fontSize: '30px'
+                })
+            });
+            $('#zoom2').click(function () {
+                $('#box2').animate({
+                    width: '90px',
+                    height: '90px',
+                    fontSize: '15px'
+
+                })
+            });
+            $('#zoom3').click(function () {
+                $('#box2').animate({
+                    width: 'toggle',
+                    height: 'toggle',
+                    fontSize: 'toggle'
+
+                })
+            });
+            $('#changeColor').click(function () {
+                $('#box2').css({
+                    "background-color": "yellow",
+                    "color": "red",
+                    "transition":"all.5s",
+                    "transform":"scale(1.5)"
+                });
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>
