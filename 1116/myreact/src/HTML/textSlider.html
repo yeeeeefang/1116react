@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 自動文字輪播 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/textslider.css">
+</head>
+<body>
+    <div class="slideText"> <!-- classname名字一定要使用這個 因為程式已寫好 -->
+<ul>
+    <li>News1</li>
+    <li>News2</li>
+    <li>News3</li>
+    <li>News4</li>
+    <li>News5</li>
+    <li>News6</li>
+    <li>News7</li>
+    <li>News8</li>
+    <li>News9</li>
+    <li>News10</li>
+</ul>
+    </div>
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/jquery.textslider.js"></script>
+    <script>
+        $(function(){
+            $('.slideText').textslider({
+                //捲動方向(scrollUp=>向上,scrollDown =>向下 )
+                direction:'scrollUp',
+                //捲動數量<li>
+                scrollNum:1,
+                //捲動速度(ms)
+                scrollSpead:400,
+                //停頓的時間(ms)
+                pause:500,
+            });
+        });
+    </script>
+</body>
+</html>

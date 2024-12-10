@@ -1,0 +1,17 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+#content{
+    background-color: beige;
+    width: 100%;
+}
+.carousel{
+    width: 450px;
+    height: 300px;
+    margin-right: 10px;
+    vertical-align: top;
+    /* html5 會在圖片底下自動生成一條 */
+    /* 因此垂直排列取消圖片下方預設的留白區 */
+}
