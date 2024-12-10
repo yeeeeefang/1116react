@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 600px;
+            height: 450px;
+        }
+
+        .box {
+            border: 1px red solid;
+            width: 600px;
+            height: 450px;
+            position: relative;
+        }
+
+        /* 輪播導覽列 */
+        #nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            z-index: 50;
+
+            width: 350px;
+            height: 50px;
+
+        }
+
+        #nav a {
+            text-decoration: none;
+            /* 把超連結的底線去除 */
+            color: azure;
+            font-weight: 700;
+            text-align: center;
+            align-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            background-color: rgb(174, 162, 31);
+            border: 2px solid rgb(229, 236, 224);
+
+        }
+        #nav a.activeSlide{
+            background-color: rgb(207, 201, 138);
+            border: 2px solid rgb(77, 86, 71);
+            color:rgb(77, 86, 71);
+            font-size: 24px;
+        }
+
+        /* 遮色區 */
+        .mask{
+            position: absolute;
+            text-align: center;
+            left: 0;
+            bottom: 10px;
+            z-index: 49;
+            background-color: rgba(0, 0, 0, 0.258);
+            width: 100%;
+            height: 50px;
+            
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div id="imgCycle"><!-- 用輪播建議以id命名 -->
+            <img src="./images/01.jpg" alt="">
+            <img src="./images/03.jpg" alt="">
+            <img src="./images/09.jpg" alt="">
+            <img src="./images/05.jpg" alt="">
+            <img src="./images/08.jpg" alt="">
+            <img src="./images/04.jpg" alt="">
+            <img src="./images/02.jpg" alt="">
+        </div>
+        <div class="mask"></div>
+        <!-- <nav>輪播扭導覽列</nav> -->
+
+    </div>
+
+
+    <!-- 載入jQuery主程式 -->
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <!-- 載入輪播的主程式 -->
+    <script src="./js/jquery.cycle.all.js"></script>
+
+    <!-- 撰寫自己的jQuery -->
+    <script>
+        $(function () {
+            //預設為淡入淡出fade
+            $('#imgCycle').after('<div id="nav"></div>').cycle({
+                fx: 'curtainX', //輪播方式
+                sync: false, //有無前一張殘影
+                // delay:1000,//第一次第一張圖停留時間(可為負值)
+                timeout: 1500,//輪播速度
+                pager: '#nav',//生成輪播的超連結
+
+            });
+        })
+    </script>
+
+</body>
+
+</html>
