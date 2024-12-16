@@ -1,36 +1,24 @@
 import $ from 'jquery'
 import './App.css'
 import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+//https://www.npmjs.com/package/aos
+//套件AOS效果
 
-
-/* 實用react mouseover/mouseover */
 function App() {
-
-  //寫法一 過時寫法
   useEffect(() => {
-    $('.cssAnim1').hover(function () {
-      $(this).addClass('imgScale');
-    }, function () {
-      $(this).removeClass('imgScale');
-    })
+    AOS.init();//初始化
   }, [])
 
-  //寫法二 建議寫法
-  // useEffect(() => {
-  //   $('.cssAnim1').on('mouseover', function () {
-  //     $(this).addClass('imgScale');
-  //   })
-  //   $('.cssAnim1').on('mouseout', function () {
-  //     $(this).removeClass('imgScale');
-  //   })
-  // }, [])
-
   return (
-    <div>
-      <a href="#" className="cssAnim1">
-        <img src="./src/HTML/images/03.jpg" alt="" />
-      </a>
-    </div>
+    <>
+      <h1 data-aos='fade-right'>AOS-zoom-in</h1>
+
+      <div className='box' data-aos='fade-up' data-aos-duration='1000'>
+
+      </div>
+    </>
   )
 }
 export default App
